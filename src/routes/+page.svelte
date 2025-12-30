@@ -9,6 +9,7 @@
 <div class="container">
 	<header>
 		<h1>⛳ Tee Time Registration System</h1>
+		<h2> Like the Highlander, there can be only one perfect tee time</h2>
 		<p>Find and book your perfect golf course in Omaha, Nebraska</p>
 	</header>
 
