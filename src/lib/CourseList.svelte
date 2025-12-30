@@ -11,8 +11,8 @@
 	let bookedCourse: GolfCourse | null = null;
 	let bookedTimeSlot: string = '';
 
-	let sortBy: 'name' | 'rating' | null = null;
-	let sortDirection: 'asc' | 'desc' = 'asc';
+	let sortBy: 'name' | 'rating' | null = 'rating';
+	let sortDirection: 'asc' | 'desc' = 'desc';
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
