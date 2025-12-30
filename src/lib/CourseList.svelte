@@ -11,6 +11,9 @@
 	let bookedCourse: GolfCourse | null = null;
 	let bookedTimeSlot: string = '';
 
+	let sortBy: 'name' | 'rating' | null = null;
+	let sortDirection: 'asc' | 'desc' = 'asc';
+
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			closeModal();
@@ -60,11 +63,51 @@
 		bookedTimeSlot = '';
 	}
 
+	function handleSort(column: 'name' | 'rating') {
+		if (sortBy === column) {
+			sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+		} else {
+			sortBy = column;
+			sortDirection = 'asc';
+		}
+	}
+
+	function getSortedCourses(courses: GolfCourse[]): GolfCourse[] {
+		if (!sortBy) return courses;
+
+		const sorted = [...courses];
+		sorted.sort((a, b) => {
+			let aValue: string | number = '';
+			let bValue: string | number = '';
+
+			if (sortBy === 'name') {
+				aValue = a.name;
+				bValue = b.name;
+			} else if (sortBy === 'rating') {
+				aValue = a.rating;
+				bValue = b.rating;
+			}
+
+			if (typeof aValue === 'string') {
+				return sortDirection === 'asc' 
+					? aValue.localeCompare(bValue as string)
+					: (bValue as string).localeCompare(aValue);
+			} else {
+				return sortDirection === 'asc' 
+					? (aValue as number) - (bValue as number)
+					: (bValue as number) - (aValue as number);
+			}
+		});
+
+		return sorted;
+	}
+
 	let filteredCourses: GolfCourse[] = [];
 
 	$: if (browser) {
-		console.log('Reactive block running:', { selectedDate, selectedTime, courses: courses.length });
-		filteredCourses = courses.filter(hasAvailableSlot);
+		console.log('Reactive block running:', { selectedDate, selectedTime, courses: courses.length, sortBy, sortDirection });
+		let filtered = courses.filter(hasAvailableSlot);
+		filteredCourses = getSortedCourses(filtered);
 		console.log('After filter:', filteredCourses.length);
 	}
 
@@ -80,8 +123,18 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Course Name</th>
-						<th>Rating</th>
+						<th class="sortable" on:click={() => handleSort('name')} on:keydown={(e) => e.key === 'Enter' && handleSort('name')} role="button" tabindex="0">
+							Course Name
+							{#if sortBy === 'name'}
+								<span class="sort-indicator">{sortDirection === 'asc' ? '▲' : '▼'}</span>
+							{/if}
+						</th>
+						<th class="sortable" on:click={() => handleSort('rating')} on:keydown={(e) => e.key === 'Enter' && handleSort('rating')} role="button" tabindex="0">
+							Rating
+							{#if sortBy === 'rating'}
+								<span class="sort-indicator">{sortDirection === 'asc' ? '▲' : '▼'}</span>
+							{/if}
+						</th>
 						<th>Par</th>
 						<th>Holes</th>
 						<th>Phone</th>
@@ -201,6 +254,31 @@
 		font-weight: 600;
 		color: #2c3e50;
 		white-space: nowrap;
+	}
+
+	th.sortable {
+		cursor: pointer;
+		user-select: none;
+		position: relative;
+		padding-right: 1.5rem;
+		transition: background-color 0.2s ease;
+	}
+
+	th.sortable:hover {
+		background-color: #dfe6e9;
+	}
+
+	th.sortable:focus {
+		outline: 2px solid #3498db;
+		outline-offset: -2px;
+	}
+
+	.sort-indicator {
+		position: absolute;
+		right: 0.5rem;
+		font-size: 0.75rem;
+		color: #3498db;
+		font-weight: bold;
 	}
 
 	td {
