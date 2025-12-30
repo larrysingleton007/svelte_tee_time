@@ -1,6 +1,8 @@
-# Tee Time
+# Tee Time - Golf Course Booking System
 
-A modern golf course management application built with SvelteKit and TypeScript.
+A modern golf course tee time registration and booking application built with SvelteKit and TypeScript. Find and book your perfect golf course in Omaha, Nebraska with an intuitive date and time selection interface.
+
+**Tagline:** "Like the Highlander, there can be only one perfect tee time" ⛳
 
 ## Project Stack
 
@@ -8,6 +10,18 @@ A modern golf course management application built with SvelteKit and TypeScript.
 - **Language:** TypeScript
 - **Package Manager:** pnpm
 - **Build Tool:** Vite
+- **Styling:** CSS
+
+## Features
+
+- 📅 **Date Selection:** Browse available tee times by date
+- ⏰ **Time Filtering:** Filter available slots by preferred tee time (early morning to afternoon)
+- 🏌️ **Course Information:** View detailed information about local Omaha golf courses including:
+  - Par and hole count
+  - Course rating
+  - Contact information and websites
+  - Real-time availability
+- 📍 **Location-Based:** Features 5+ premium golf courses in the Omaha, Nebraska area
 
 ## Getting Started
 
@@ -15,7 +29,13 @@ A modern golf course management application built with SvelteKit and TypeScript.
 
 - Node.js 18+ and pnpm installed
 
-### Development
+### Installation & Development
+
+Install dependencies:
+
+```sh
+pnpm install
+```
 
 Start the development server:
 
@@ -26,15 +46,17 @@ pnpm run dev
 pnpm run dev -- --open
 ```
 
+The app will be available at `http://localhost:5173`.
+
 ### Building
 
-To create a production version:
+Create a production build:
 
 ```sh
 pnpm run build
 ```
 
-Preview the production build:
+Preview the production build locally:
 
 ```sh
 pnpm run preview
@@ -42,12 +64,12 @@ pnpm run preview
 
 ### Type Checking
 
-Run type checking:
+Run TypeScript type checking:
 
 ```sh
 pnpm run check
 
-# Watch mode for type checking
+# Watch mode for continuous type checking
 pnpm run check:watch
 ```
 
@@ -55,11 +77,25 @@ pnpm run check:watch
 
 ```
 src/
-  - routes/          # Page components and routing
-  - lib/             # Reusable components and utilities
+  ├── routes/                 # Page components and routing
+  │   ├── +page.svelte       # Main tee time registration page
+  │   └── +layout.svelte      # Root layout
+  ├── lib/                     # Reusable components and utilities
+  │   ├── CourseList.svelte   # Golf course display component
+  │   ├── golfCourses.ts      # Course data and types
+  │   └── index.ts            # Library exports
+  ├── app.html                # HTML template
+  └── app.d.ts               # TypeScript type definitions
 ```
+
+## Featured Golf Courses
+
+- **Dodge Park Golf Club** - 1717 N. 188th St
+- **Omaha Country Club** - 4400 R St (4.7⭐ rating)
+- **Applewood Golf Course** - 222 Fort Omaha Rd
+- **Standing Bear Lake Golf Club** - Ashland, NE
+- **Shadow Ridge Golf Course** - 15151 W Maple Rd
 
 ## Deployment
 
-See the [adapter documentation](https://svelte.dev/docs/kit/adapters) to configure your deployment target.
-# svelte_tee_time
+See the [SvelteKit adapter documentation](https://svelte.dev/docs/kit/adapters) to configure your deployment target.
