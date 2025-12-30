@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SvelteKit Dev Server",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [
+                "run",
+                "dev"
+            ],
+            "isBackground": true,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Project",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [
+                "run",
+                "build"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
