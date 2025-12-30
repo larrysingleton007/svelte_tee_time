@@ -133,6 +133,10 @@
 							<span class="detail-value">{bookedCourse.name}</span>
 						</div>
 						<div class="detail-row">
+							<span class="detail-label">Address:</span>
+							<span class="detail-value">{bookedCourse.address}</span>
+						</div>
+						<div class="detail-row">
 							<span class="detail-label">Date:</span>
 							<span class="detail-value">{formatDate(selectedDate)}</span>
 						</div>
