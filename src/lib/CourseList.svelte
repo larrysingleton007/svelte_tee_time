@@ -113,11 +113,29 @@
 
 </script>
 
-<div class="py-8 px-4">
+<div class="py-16 px-4">
 	{#if selectedDate === ''}
-		<p class="text-center text-gray-600 text-lg py-8">Select a date to see available tee times</p>
+		<div class="max-w-2xl mx-auto">
+			<div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border-2 border-dashed border-blue-200 p-12 text-center">
+				<div class="text-5xl mb-4">📅</div>
+				<h3 class="text-2xl font-bold text-gray-800 mb-2">Ready to Book Your Tee Time?</h3>
+				<p class="text-lg text-gray-600">Select a date above to see available</p>
+				<p class="text-lg text-gray-600"> golf courses and tee times in Omaha</p>
+				<div class="mt-6 text-sm text-gray-500">
+					<p>🏌️ Choose your preferred date and time</p>
+					<p>⭐ Courses are sorted by rating (highest first)</p>
+					<p>📞 Contact information included</p>
+				</div>
+			</div>
+		</div>
 	{:else if filteredCourses.length === 0}
-		<p class="text-center text-gray-600 text-lg py-8">No courses available for the selected date and time</p>
+		<div class="max-w-2xl mx-auto">
+			<div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border-2 border-dashed border-amber-200 p-12 text-center">
+				<div class="text-5xl mb-4">⛳</div>
+				<p class="text-center text-lg font-semibold text-gray-700">No courses available for the selected date and time</p>
+				<p class="text-center text-sm text-gray-600 mt-2">Try selecting a different date or time slot</p>
+			</div>
+		</div>
 	{:else}
 		<div class="max-w-7xl mx-auto bg-white rounded-lg shadow overflow-x-auto">
 			<table class="w-full text-sm border-collapse">

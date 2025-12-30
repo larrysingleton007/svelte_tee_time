@@ -10,7 +10,7 @@
 	<header>
 		<h1>⛳ Tee Time Registration System</h1>
 		<h2> Like the Highlander, there can be only one perfect tee time</h2>
-		<p>Find and book your perfect golf course in Omaha, Nebraska</p>
+		<p>Find and book your perfect golf course in Omaha, NE</p>
 	</header>
 
 	<div class="search-section">
@@ -48,11 +48,13 @@
 
 		{#if selectedDate}
 			<div class="results-info">
-				<p>
+				<p class="text-center">
 					Showing courses with available tee times for
-					<strong>{new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</strong>
+				</p>
+				<p class="font-bold text-center mt-2">
+					{new Date(selectedDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
 					{#if selectedTime}
-						at <strong>{selectedTime}</strong>
+						at {selectedTime}
 					{/if}
 				</p>
 			</div>
@@ -152,6 +154,7 @@
 		border-left: 4px solid #27ae60;
 		color: #2c5f2d;
 		margin-top: 1rem;
+		text-align: center;
 	}
 
 	.results-info p {
